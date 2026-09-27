@@ -1,110 +1,1038 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Notion Toggle</title>
+<title>Notion Style Guide</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
 
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      background: transparent;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   "Noto Sans KR", sans-serif;
-    }
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans KR",
+        sans-serif;
 
-    .toggle-container {
-      width: 100%;
-      text-align: center;
-    }
+    background: transparent;
+}
 
-    /* 클릭하는 이미지 */
-    .toggle-image {
-      width: 120px;
-      max-width: 100%;
-      cursor: pointer;
-      user-select: none;
-      -webkit-user-drag: none;
-      transition: transform 0.15s ease;
-    }
 
-    .toggle-image:hover {
-      transform: scale(1.05);
-    }
+/* ==================================================
+   처음 화면
+   ================================================== */
 
-    .toggle-image:active {
-      transform: scale(0.95);
-    }
+.home {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
 
-    /* 펼쳐지는 내용 */
-    .toggle-content {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition:
-        max-height 0.3s ease,
+.open-image {
+    width: 120px;
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        opacity 0.15s ease;
+
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.open-image:hover {
+    transform: scale(1.05);
+}
+
+.open-image:active {
+    transform: scale(0.95);
+}
+
+
+/* ==================================================
+   상세 페이지
+   ================================================== */
+
+.page {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 9999;
+
+    background: #ffffff;
+
+    overflow-y: auto;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: scale(0.98);
+
+    transition:
         opacity 0.2s ease,
-        margin-top 0.3s ease;
-      margin-top: 0;
+        transform 0.2s ease,
+        visibility 0.2s;
+}
+
+.page.open {
+    opacity: 1;
+    visibility: visible;
+
+    transform: scale(1);
+}
+
+
+/* ==================================================
+   상단 닫기 버튼
+   ================================================== */
+
+.page-header {
+    position: sticky;
+
+    top: 0;
+
+    height: 50px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    padding: 0 20px;
+
+    background: rgba(255,255,255,0.92);
+
+    backdrop-filter: blur(10px);
+
+    z-index: 20;
+}
+
+.close-button {
+    width: 36px;
+    height: 36px;
+
+    border: 0;
+    border-radius: 6px;
+
+    background: transparent;
+
+    font-size: 28px;
+
+    color: #777;
+
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background: #eeeeee;
+}
+
+
+/* ==================================================
+   전체 콘텐츠
+   ================================================== */
+
+.page-content {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding:
+        20px
+        35px
+        100px;
+}
+
+
+/* ==================================================
+   ① 파티 구성
+   ================================================== */
+
+.section-title {
+
+    margin-top: 5px;
+    margin-bottom: 22px;
+
+    font-size: 20px;
+
+    font-weight: 700;
+}
+
+.party-description {
+
+    margin-bottom: 20px;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    color: #37352f;
+}
+
+.party-name {
+
+    font-weight: 700;
+
+    color: #222;
+}
+
+.party-note {
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* 파티 이미지 테스트 영역 */
+
+.party-row {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+    margin-bottom: 28px;
+}
+
+
+/* 실제 이미지를 넣기 전 테스트용 */
+
+.party-card {
+
+    height: 80px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 10px;
+
+    border-radius: 3px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef3f8,
+            #dfe7ef
+        );
+
+    color: #555;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    border: 1px solid #e4e8ec;
+}
+
+
+/* 경고 박스 */
+
+.notice {
+
+    margin-top: 15px;
+
+    padding: 18px 20px;
+
+    border-radius: 10px;
+
+    background: #f7f6f3;
+
+    color: #444;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+.notice strong {
+
+    color: #222;
+
+}
+
+
+/* ==================================================
+   구분선
+   ================================================== */
+
+.divider {
+
+    width: 100%;
+
+    height: 1px;
+
+    background: #eeeeee;
+
+    margin:
+        45px
+        0
+        35px;
+}
+
+
+/* ==================================================
+   ② 캐릭터 상세 영역
+   ================================================== */
+
+.detail-box {
+
+    width: 100%;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 14px;
+
+    padding: 16px 22px 50px;
+
+    background: #ffffff;
+}
+
+
+/* ==================================================
+   탭
+   ================================================== */
+
+.tabs {
+
+    display: flex;
+
+    gap: 5px;
+
+    margin-bottom: 35px;
+}
+
+.tab {
+
+    padding:
+        8px
+        13px;
+
+    border: 0;
+
+    border-radius: 20px;
+
+    background: transparent;
+
+    color: #888;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+.tab:hover {
+
+    background: #f2f2f0;
+
+}
+
+.tab.active {
+
+    background: #f1f1ef;
+
+    color: #333;
+
+    font-weight: 600;
+}
+
+
+/* ==================================================
+   캐릭터 내용
+   ================================================== */
+
+.character {
+
+    display: none;
+}
+
+.character.active {
+
+    display: block;
+}
+
+
+/* 캐릭터 이미지 테스트 영역 */
+
+.character-image {
+
+    width: 120px;
+    height: 120px;
+
+    margin:
+        0
+        0
+        45px;
+
+    border-radius: 4px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e9eef4,
+            #d6dee8
+        );
+
+    color: #666;
+
+    font-size: 13px;
+}
+
+
+/* 제목 */
+
+.character-title {
+
+    margin-bottom: 40px;
+
+    font-size: 22px;
+
+    font-weight: 700;
+}
+
+
+/* ==================================================
+   큰 이미지 테스트 영역
+   ================================================== */
+
+.content-image {
+
+    width: 100%;
+
+    min-height: 260px;
+
+    margin:
+        20px
+        0
+        35px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    border-radius: 3px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e6edf3,
+            #d5e0e9
+        );
+
+    color: #666;
+
+    font-size: 15px;
+}
+
+
+/* ==================================================
+   모바일
+   ================================================== */
+
+@media (max-width: 600px) {
+
+    .page-content {
+
+        padding:
+            15px
+            18px
+            80px;
     }
 
-    /* 열린 상태 */
-    .toggle-container.open .toggle-content {
-      max-height: 1000px;
-      opacity: 1;
-      margin-top: 15px;
+    .party-row {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 5px;
     }
 
-    .content-box {
-      padding: 20px;
-      text-align: left;
-      border: 1px solid #e5e5e5;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.8);
+    .party-card {
+
+        height: 65px;
+
+        font-size: 11px;
+
+        padding: 5px;
     }
-  </style>
+
+    .detail-box {
+
+        padding:
+            14px
+            14px
+            35px;
+    }
+
+    .character-image {
+
+        width: 100px;
+        height: 100px;
+    }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <div class="toggle-container" id="toggle">
 
-    <!-- 클릭하는 이미지 -->
+<!-- ==================================================
+     처음 화면
+     ================================================== -->
+
+<div class="home">
+
     <img
-      src="toggle.png"
-      alt="토글"
-      class="toggle-image"
-      id="toggleButton"
+        src="toggle.png"
+        alt="페이지 열기"
+        class="open-image"
+        id="openButton"
     >
 
-    <!-- 숨겨져 있는 내용 -->
-    <div class="toggle-content">
-      <div class="content-box">
-        <p>여기에 원하는 내용을 넣으면 됩니다.</p>
-        <p>이미지를 다시 클릭하면 이 내용이 닫힙니다.</p>
-      </div>
+</div>
+
+
+
+<!-- ==================================================
+     상세 페이지
+     ================================================== -->
+
+<div
+    class="page"
+    id="page"
+>
+
+
+    <!-- 닫기 버튼 -->
+
+    <div class="page-header">
+
+        <button
+            class="close-button"
+            id="closeButton"
+        >
+            ×
+        </button>
+
     </div>
 
-  </div>
 
-  <script>
-    const toggle = document.getElementById("toggle");
-    const button = document.getElementById("toggleButton");
 
-    button.addEventListener("click", function () {
-      toggle.classList.toggle("open");
-    });
-  </script>
+    <!-- 전체 내용 -->
+
+    <main class="page-content">
+
+
+        <!-- ==================================================
+             ① 파티 구성
+             ================================================== -->
+
+        <h2 class="section-title">
+
+            ■ 파티 구성
+
+        </h2>
+
+
+        <!-- 파티 1 -->
+
+        <div class="party-description">
+
+            <span class="party-name">
+                네티아
+            </span>
+
+            /
+
+            <span class="party-name">
+                아델라이트 파연
+            </span>
+
+            /
+
+            <span class="party-name">
+                카레니나 신항
+            </span>
+
+            -
+
+            진입참 어픽스를 사용해야 합니다.
+
+            <br>
+
+            <span class="party-note">
+
+                (당장 다비치 쓰는 캐릭이 네티아밖에 없어서 채용하지만
+                이것 외에 전혀 파티 이득이 없어서 어울리진 않습니다.)
+
+            </span>
+
+        </div>
+
+
+        <div class="party-row">
+
+            <div class="party-card">
+                네티아<br>망가
+            </div>
+
+            <div class="party-card">
+                아델라이트<br>파연
+            </div>
+
+            <div class="party-card">
+                카레니나<br>신항
+            </div>
+
+        </div>
+
+
+
+        <!-- 파티 2 -->
+
+        <div class="party-description">
+
+            <span class="party-name">
+                카무이 중능
+            </span>
+
+            /
+
+            <span class="party-name">
+                아델라이트 파연
+            </span>
+
+            /
+
+            <span class="party-name">
+                카레니나 신항
+            </span>
+
+            -
+
+            진입참 어픽스를 사용해야 합니다.
+
+            <br>
+
+            <span class="party-note">
+
+                (카무이 중능의 자체 성능이 떨어지고
+                신규 육성 부담이 있으나 완성시 여기 파티중엔 가장 좋습니다.)
+
+            </span>
+
+        </div>
+
+
+        <div class="party-row">
+
+            <div class="party-card">
+                카무이<br>중능
+            </div>
+
+            <div class="party-card">
+                아델라이트<br>파연
+            </div>
+
+            <div class="party-card">
+                카레니나<br>신항
+            </div>
+
+        </div>
+
+
+
+        <!-- 파티 3 -->
+
+        <div class="party-description">
+
+            <span class="party-name">
+                로제타 리고르
+            </span>
+
+            /
+
+            <span class="party-name">
+                아델라이트 파연
+            </span>
+
+            /
+
+            <span class="party-name">
+                카레니나 신항
+            </span>
+
+            -
+
+            진입참 어픽스를 사용해야 합니다.
+
+        </div>
+
+
+        <div class="party-row">
+
+            <div class="party-card">
+                로제타<br>리고르
+            </div>
+
+            <div class="party-card">
+                아델라이트<br>파연
+            </div>
+
+            <div class="party-card">
+                카레니나<br>신항
+            </div>
+
+        </div>
+
+
+
+        <!-- 경고 -->
+
+        <div class="notice">
+
+            ⚠️
+
+            <strong>
+                현재 물리 파티
+            </strong>
+
+            는 카레니나 제외 전부 대체 캐릭이므로
+            많은 투자는 비추천합니다.
+
+            <br><br>
+
+            당장 해당하는 캐릭을 뽑으실게 아니면
+            카무이 중능을 80렙, 4디비치 2개셔넌
+            의식 공명X 강화만 하는 것도 나쁘진 않습니다.
+
+        </div>
+
+
+
+        <!-- ==================================================
+             구분
+             ================================================== -->
+
+        <div class="divider"></div>
+
+
+
+        <!-- ==================================================
+             ② 캐릭터 상세
+             ================================================== -->
+
+        <div class="detail-box">
+
+
+            <!-- 탭 -->
+
+            <div class="tabs">
+
+                <button
+                    class="tab active"
+                    data-character="karenina"
+                >
+                    카레니나 신항
+                </button>
+
+
+                <button
+                    class="tab"
+                    data-character="selena"
+                >
+                    세레나 희성
+                </button>
+
+            </div>
+
+
+
+            <!-- ==========================================
+                 카레니나
+                 ========================================== -->
+
+            <div
+                class="character active"
+                id="karenina"
+            >
+
+
+                <div class="character-image">
+
+                    카레니나<br>
+                    캐릭터 이미지
+
+                </div>
+
+
+                <h2 class="character-title">
+
+                    의식
+
+                </h2>
+
+
+                <div class="content-image">
+
+                    카레니나<br>
+                    의식 조합 이미지
+
+                </div>
+
+
+                <h2 class="character-title">
+
+                    세트 스킬
+
+                </h2>
+
+
+                <div class="content-image">
+
+                    카레니나<br>
+                    세트 스킬 이미지
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ==========================================
+                 세레나
+                 ========================================== -->
+
+            <div
+                class="character"
+                id="selena"
+            >
+
+
+                <div class="character-image">
+
+                    세레나<br>
+                    캐릭터 이미지
+
+                </div>
+
+
+                <h2 class="character-title">
+
+                    의식
+
+                </h2>
+
+
+                <div class="content-image">
+
+                    세레나<br>
+                    의식 조합 이미지
+
+                </div>
+
+
+                <h2 class="character-title">
+
+                    세트 스킬
+
+                </h2>
+
+
+                <div class="content-image">
+
+                    세레나<br>
+                    세트 스킬 이미지
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+
+<script>
+
+
+/* ==================================================
+   페이지 열기 / 닫기
+   ================================================== */
+
+const page =
+    document.getElementById("page");
+
+const openButton =
+    document.getElementById("openButton");
+
+const closeButton =
+    document.getElementById("closeButton");
+
+
+openButton.addEventListener(
+    "click",
+    function () {
+
+        page.classList.add("open");
+
+    }
+);
+
+
+closeButton.addEventListener(
+    "click",
+    function () {
+
+        page.classList.remove("open");
+
+    }
+);
+
+
+/* ESC로 닫기 */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key === "Escape") {
+
+            page.classList.remove("open");
+
+        }
+
+    }
+);
+
+
+
+/* ==================================================
+   탭 기능
+   ================================================== */
+
+const tabs =
+    document.querySelectorAll(".tab");
+
+const characters =
+    document.querySelectorAll(".character");
+
+
+tabs.forEach(
+    function (tab) {
+
+        tab.addEventListener(
+            "click",
+            function () {
+
+
+                /* 모든 탭 비활성화 */
+
+                tabs.forEach(
+                    function (item) {
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                /* 클릭한 탭 활성화 */
+
+                tab.classList.add(
+                    "active"
+                );
+
+
+                /* 모든 캐릭터 숨김 */
+
+                characters.forEach(
+                    function (character) {
+
+                        character.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                /* 선택한 캐릭터 표시 */
+
+                const target =
+                    document.getElementById(
+                        tab.dataset.character
+                    );
+
+
+                if (target) {
+
+                    target.classList.add(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+);
+
+</script>
+
 
 </body>
 </html>
